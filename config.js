@@ -1,7 +1,9 @@
+require("dotenv").config()
+
 module.exports = {
-    mongoURI: 'mongodb://localhost:27017/userlist',
-    smtpHost: 'your_smtp_host',
-    smtpPort: 587,
-    smtpUser: 'your_email@example.com',
-    smtpPass: 'your_email_password'
+    mongoURI: process.env.MONGOURI,
+    smtpHost: process.env.SMTP_HOST,
+    smtpPort: process.env.SMTP_PORT,
+    smtpUser: process.env.SMTP_USER,
+    smtpPass: process.env.SMTP_PASSWORD
 };

@@ -1,13 +1,11 @@
 const express = require('express');
+const router = express.Router();
 const multer = require('multer');
 const userController = require('../controllers/userController');
-const router = express.Router();
 
 const upload = multer({ dest: 'uploads/' });
 
-router.post('/lists', userController.createList);
-router.post('/lists/:listId/users', upload.single('file'), userController.addUserFromCSV);
-
-// Additional routes for sending email, unsubscribing, etc.
+// Endpoint: POST /lists/:listId/users/csv
+router.post('/:listId/users/csv', upload.single('file'), userController.addUserFromCSV);
 
 module.exports = router;
