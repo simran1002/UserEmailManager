@@ -5,7 +5,7 @@ const userController = require('../controllers/userController');
 
 const upload = multer({ dest: 'uploads/' });
 
-// Endpoint: POST /lists/:listId/users/csv
-router.post('/:listId/users/csv', upload.single('file'), userController.addUserFromCSV);
+// Endpoint: POST /lists/:listId/users
+router.post('/:listId', upload.single('file'), userController.addUsers);
 
 module.exports = router;
