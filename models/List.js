@@ -1,8 +1,15 @@
 const mongoose = require('mongoose');
 
-const ListSchema = new mongoose.Schema({
+const customPropertySchema = new mongoose.Schema({
     title: { type: String, required: true },
-    customProperties: [{ title: String, fallbackValue: String }]
+    fallbackValue: { type: String, required: true }
 });
 
-module.exports = mongoose.model('List', ListSchema);
+const listSchema = new mongoose.Schema({
+    title: { type: String, required: true },
+    customProperties: [customPropertySchema]
+});
+
+const List = mongoose.model('List', listSchema);
+
+module.exports = List;

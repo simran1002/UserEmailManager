@@ -1,5 +1,7 @@
+require('dotenv').config();
 const express = require('express');
 const app = express();
+const connectDB = require('./dbConfig'); // Import the MongoDB connection function
 
 // Import routes
 const listRoutes = require('./routes/listRoutes');
@@ -10,10 +12,19 @@ const subscriptionRoutes = require('./routes/subscriptionRoutes');
 // Middleware
 app.use(express.json());
 
+// Connect to MongoDB
+connectDB();
+
 // Routes
 app.use('/lists', listRoutes);
 app.use('/lists', userRoutes);
 app.use('/lists', emailRoutes);
 app.use('/lists', subscriptionRoutes);
 
-module.exports = app;
+// Define port
+const PORT = process.env.PORT || 3000;
+
+// Start server
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+});

@@ -1,6 +1,6 @@
 const List = require('../models/List');
 const User = require('../models/User');
-const { sendEmail } = require('../services/emailService');
+const { sendEmail } = require('../email/emailService');
 
 const sendEmailToList = async (req, res) => {
     try {
