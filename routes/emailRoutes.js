@@ -1,8 +1,6 @@
+// routes/emailRoutes.js
 const express = require('express');
 const router = express.Router();
-const emailController = require('../controllers/emailController');
-
-// Endpoint: POST /lists/:listId/send-email
-router.post('/:listId/send-email', emailController.sendEmailToList);
+// Add email-related controllers and routes here
 
 module.exports = router;

@@ -1,69 +1,87 @@
 const List = require('../models/List');
 const User = require('../models/User');
 const csvParser = require('csv-parser');
+const {readCsv} = require("../utils/utils");
 const fs = require('fs');
 
 const addUsers = async (req, res) => {
     const { listId } = req.params;
-    const file = req.file;
+    const file = req.files.file;
 
     if (!file) {
         return res.status(400).json({ error: 'CSV file is required' });
     }
 
+    console.log(file);
+
     try {
         const list = await List.findById(listId);
+        console.log(list);  
         if (!list) {
             return res.status(404).json({ error: 'List not found' });
         }
 
-        const customProperties = list.customProperties.reduce((acc, prop) => {
-            acc[prop.title] = prop.fallbackValue;
-            return acc;
-        }, {});
+        if (!list.customProperties || list.customProperties.length === 0) {
+            return res.status(400).json({ error: 'Custom properties not defined for the list' });
+        }
 
-        const users = [];
-        const errors = [];
+        // const customPropertiesMap = new Map(list.customProperties.map(property => [property.title.toLowerCase(), property.fallbackValue]));
 
-        fs.createReadStream(file.path)
-            .pipe(csvParser())
-            .on('data', (row) => {
-                const user = {
-                    name: row.name,
-                    email: row.email,
-                    listId: listId,
-                    properties: {}
-                };
+        const customPropertiesmap= new Map();
+        for(const property of list.customProperties){
+            customPropertiesmap.set(property.title.toLowerCase(),property.fallbackValue);
+        }
 
-                if (!user.name || !user.email) {
-                    errors.push({ row, error: 'Name and email are required' });
-                    return;
-                }
+        console.log(customPropertiesmap)
 
-                for (const [key, fallbackValue] of Object.entries(customProperties)) {
-                    user.properties[key] = row[key] || fallbackValue;
-                }
 
-                users.push(user);
-            })
-            .on('end', async () => {
-                try {
-                    const result = await User.insertMany(users, { ordered: false });
-                    res.status(200).json({
-                        success: true,
-                        addedCount: result.length,
-                        errorsCount: errors.length,
-                        errorsList: errors,
-                    });
-                } catch (error) {
-                    res.status(500).json({ error: 'Server error', details: error });
-                }
-            });
+        const userData = await readCsv(file,customPropertiesmap,listId);
+
+        console.log(userData);
+
+        const saveData= await User.insertMany(userData);
+        return res.status(200).json({
+            success: true,
+            addedCount: saveData.length,
+            errorsCount: 0,
+            errorsList: [],
+        });
+        
     } catch (error) {
         res.status(500).json({ error: 'Server error', details: error });
     }
 };
 
 module.exports = {
-    addUsers,
+    addUsers
 };
+
+// fs.createReadStream(file.path)
+        //     .pipe(csvParser())
+        //     .on('data', (row) => {
+        //         const user = {
+        //             listId: listId,
+        //             properties: {}
+        //         };
+
+        //         // Iterate through custom properties and map data from CSV
+        //         list.customProperties.forEach(property => {
+        //             const propertyName = property.title.toLowerCase();
+        //             user.properties[propertyName] = row[propertyName] || customPropertiesMap.get(propertyName);
+        //         });
+
+        //         users.push(user);
+        //     })
+        //     .on('end', async () => {
+        //         try {
+        //             const result = await User.insertMany(users, { ordered: false });
+        //             res.status(200).json({
+        //                 success: true,
+        //                 addedCount: result.length,
+        //                 errorsCount: errors.length,
+        //                 errorsList: errors,
+        //             });
+        //         } catch (error) {
+        //             res.status(500).json({ error: 'Server error', details: error });
+        //         }
+        //     });

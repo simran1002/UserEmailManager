@@ -1,8 +1,9 @@
+// lists/routes/listRoutes.js
 const express = require('express');
 const router = express.Router();
-const listController = require('../controllers/listController');
+const { createList } = require('../controllers/listController');
 
-// Endpoint: POST /lists
-router.post('/', listController.createList);
+// POST /lists
+router.post('/', createList);
 
 module.exports = router;

@@ -1,12 +1,24 @@
+// users/models/User.js
 const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema({
-    name: { type: String, required: true },
-    email: { type: String, required: true, unique: true },
-    listId: { type: mongoose.Schema.Types.ObjectId, ref: 'List', required: true },
-    properties: { type: Map, of: String }
+    name: {
+        type: String,
+        required: true
+    },
+    email: {
+        type: String,
+        required: true,
+        unique: true
+    },
+    city:{
+        type:String,
+        required:true
+    },
+    list: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'List'
+    }
 });
 
-const User = mongoose.model('User', userSchema);
-
-module.exports = User;
+module.exports = mongoose.model('User', userSchema);
