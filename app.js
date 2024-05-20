@@ -15,7 +15,7 @@ app.use(fileUpload());
 
 connectDB();
 
-connectRabbitMQ();
+// connectRabbitMQ();
 
 app.use('/lists', listRoutes);
 app.use('/users', userRoutes);
