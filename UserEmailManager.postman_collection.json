@@ -1,0 +1,431 @@
+{
+	"info": {
+		"_postman_id": "a31c0054-895a-4ded-98b3-b30182d87ee2",
+		"name": "UserEmailManager",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24106690"
+	},
+	"item": [
+		{
+			"name": "List Creation",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"My entry\",\r\n    \"customProperties\": [\r\n        {\r\n            \"title\": \"name\",\r\n            \"fallbackValue\": \"Simran\"\r\n        },\r\n        {\r\n            \"title\": \"email\",\r\n            \"fallbackValue\": \"simranyadav464@gmail.com\"\r\n        },\r\n        {\r\n            \"title\": \"city\",\r\n            \"fallbackValue\": \"Kanpur\"\r\n        }\r\n    ]\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5000/lists/",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"lists",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "New Request",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"My List\",\r\n    \"customProperties\": [\r\n        { \"title\": \"name\", \"fallbackValue\": \"Simran Yadav\" },\r\n        { \"title\": \"email\", \"fallbackValue\": \"simranyadav464@gmail.com\" },\r\n        { \"title\": \"city\", \"fallbackValue\": \"Kanpur\" }\r\n    ]\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/lists/",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"lists",
+								""
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "331"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"14b-yj3ppMgENPcbwMV0PwvVGI7awZQ\""
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 18 May 2024 13:29:12 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"title\": \"My List\",\n    \"customProperties\": [\n        {\n            \"title\": \"name\",\n            \"fallbackValue\": \"Simran Yadav\",\n            \"_id\": \"6648ad288bd2c974dda6c4e9\"\n        },\n        {\n            \"title\": \"email\",\n            \"fallbackValue\": \"simranyadav464@gmail.com\",\n            \"_id\": \"6648ad288bd2c974dda6c4ea\"\n        },\n        {\n            \"title\": \"city\",\n            \"fallbackValue\": \"Kanpur\",\n            \"_id\": \"6648ad288bd2c974dda6c4eb\"\n        }\n    ],\n    \"_id\": \"6648ad288bd2c974dda6c4e8\",\n    \"__v\": 0\n}"
+				}
+			]
+		},
+		{
+			"name": "User Addition via CSV Upload",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "postman-cloud:///1ef169d1-bb24-4840-b7f3-85f3970e4458"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:5000/users/664a5a297c146d7911a4488c",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"users",
+						"664a5a297c146d7911a4488c"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "User Addition via CSV Upload",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "postman-cloud:///1ef16971-7824-41e0-a6c2-b4cdf502489a"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:5000/users/664a5a297c146d7911a4488c",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"users",
+								"664a5a297c146d7911a4488c"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "63"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"3f-N+in9Vj1Ym9w+phGDtWy69myAlo\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 20 May 2024 10:52:48 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": true,\n    \"addedCount\": 1,\n    \"errorsCount\": 0,\n    \"errorsList\": []\n}"
+				},
+				{
+					"name": "User Addition via CSV Upload",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "postman-cloud:///1ef169d1-bb24-4840-b7f3-85f3970e4458"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:5000/users/664a5a297c146d7911a4488c",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"users",
+								"664a5a297c146d7911a4488c"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "63"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"3f-Ac8j1Dy5cvy7jhP0YtQbOafNPpQ\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 20 May 2024 11:35:52 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": true,\n    \"addedCount\": 2,\n    \"errorsCount\": 0,\n    \"errorsList\": []\n}"
+				}
+			]
+		},
+		{
+			"name": "Send Email to Complete List",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"subject\": \"Thank you for signing up\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5000/emails/664a5a297c146d7911a4488c/send-email",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"emails",
+						"664a5a297c146d7911a4488c",
+						"send-email"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Send Email to Complete List",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"subject\": \"Thank you for signing up\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/emails/664a5a297c146d7911a4488c/send-email",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"emails",
+								"664a5a297c146d7911a4488c",
+								"send-email"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "53"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"35-2tjxg6sEOG0LtijEeoovApJfxGs\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 20 May 2024 11:31:18 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": true,\n    \"message\": \"Emails sent successfully\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Unsubscribe User from List",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "localhost:5000/subscriptions/lists/664a5a297c146d7911a4488c/users/664b3598b0c1c983fed0ef8d/unsubscribe",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"subscriptions",
+						"lists",
+						"664a5a297c146d7911a4488c",
+						"users",
+						"664b3598b0c1c983fed0ef8d",
+						"unsubscribe"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Unsubscribe User from List",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/subscriptions/lists/664a5a297c146d7911a4488c/users/664b3598b0c1c983fed0ef8d/unsubscribe",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"subscriptions",
+								"lists",
+								"664a5a297c146d7911a4488c",
+								"users",
+								"664b3598b0c1c983fed0ef8d",
+								"unsubscribe"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "44"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"2c-Zs6KeDAb/is5LxACgSIhYzrO+UA\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 20 May 2024 11:47:08 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"User unsubscribed successfully\"\n}"
+				}
+			]
+		}
+	]
+}
