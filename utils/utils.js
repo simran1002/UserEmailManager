@@ -4,7 +4,6 @@ const fs=require("fs");
 const{createReadStream}=require("fs");
 const stream=require("stream");
 const path=require("path");
-// const User=require("../Models/register")
 
 
 exports.readCsv = (uploadedFile,customPropertiesMap,list) => {
@@ -40,18 +39,3 @@ console.log("Data read")
         });
     });
   };
-
-// exports.findDBUsers=async ()=>{
-//     try {
-//         const users=await User.find();
-//         return users.map((user)=>user.email);
-//     } catch (error) {
-//         console.log(error);
-//     }
-// }
-
-
-// exports.findCommon=(csvE,DbE)=>{
-//     const commonEmails=csvE.filter((email)=>DbE.includes(email));
-//     return commonEmails;
-// }

@@ -1,6 +1,7 @@
-// routes/emailRoutes.js
 const express = require('express');
 const router = express.Router();
-// Add email-related controllers and routes here
+const { sendEmailToAllUsers } = require('../controllers/emailController');
+
+router.post('/:listId/send-email', sendEmailToAllUsers);
 
 module.exports = router;

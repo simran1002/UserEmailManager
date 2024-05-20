@@ -25,8 +25,6 @@ const addUsers = async (req, res) => {
             return res.status(400).json({ error: 'Custom properties not defined for the list' });
         }
 
-        // const customPropertiesMap = new Map(list.customProperties.map(property => [property.title.toLowerCase(), property.fallbackValue]));
-
         const customPropertiesmap= new Map();
         for(const property of list.customProperties){
             customPropertiesmap.set(property.title.toLowerCase(),property.fallbackValue);
@@ -55,33 +53,3 @@ const addUsers = async (req, res) => {
 module.exports = {
     addUsers
 };
-
-// fs.createReadStream(file.path)
-        //     .pipe(csvParser())
-        //     .on('data', (row) => {
-        //         const user = {
-        //             listId: listId,
-        //             properties: {}
-        //         };
-
-        //         // Iterate through custom properties and map data from CSV
-        //         list.customProperties.forEach(property => {
-        //             const propertyName = property.title.toLowerCase();
-        //             user.properties[propertyName] = row[propertyName] || customPropertiesMap.get(propertyName);
-        //         });
-
-        //         users.push(user);
-        //     })
-        //     .on('end', async () => {
-        //         try {
-        //             const result = await User.insertMany(users, { ordered: false });
-        //             res.status(200).json({
-        //                 success: true,
-        //                 addedCount: result.length,
-        //                 errorsCount: errors.length,
-        //                 errorsList: errors,
-        //             });
-        //         } catch (error) {
-        //             res.status(500).json({ error: 'Server error', details: error });
-        //         }
-        //     });
